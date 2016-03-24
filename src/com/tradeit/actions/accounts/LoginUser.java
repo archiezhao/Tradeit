@@ -9,17 +9,27 @@ public class LoginUser extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//RequestDispatcher view = request.getRequestDispatcher("/hello.html");
 		//view.forward(request, response);
-		doGet(request, response);
-	}
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
 		ServletContext context = getServletContext();
-		//String que = "insert into user_authentication (user_id, pass_hash) values ('tset_id123', 'test_pass123');";
-		try {
-			UserAuth.insertUserPass(request.getParameter("username"), request.getParameter("password"));
+	
+		try {		
+			boolean isCorrect = UserAuth.checkPassCorrect(request.getParameter("username"), request.getParameter("password"));
+			String message = "";
+			if(isCorrect) {
+				message = "Correct! You have logged in";
+			}
+			else
+				message = "Username or password incorrect";
+				
+			PrintWriter out = response.getWriter();
+      			out.println(
+        		"<html>\n" +
+        		"<body bgcolor=\"#f0f0f0\">\n" +
+        		"<p>Current Message is: " + message + "</p>\n");
 		} catch (Exception e) {
 			context.log(e.toString());
 		}
 		
 		
-	} 
+	}
 }

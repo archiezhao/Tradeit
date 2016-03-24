@@ -23,4 +23,14 @@ id="WebApp_ID" version="2.5">
 	<url-pattern>/login.do</url-pattern>
 </servlet-mapping>
 
+<servlet>
+	<servlet-name>RegisterUser</servlet-name>
+	<servlet-class>com.tradeit.actions.accounts.RegisterUser</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>RegisterUser</servlet-name>
+	<url-pattern>/register.do</url-pattern>
+</servlet-mapping>
+
 </web-app>
