@@ -34,13 +34,13 @@ id="WebApp_ID" version="2.5">
 </servlet-mapping>
 
 <servlet>
-	<servlet-name>DisplayHome</servlet-name>
-	<servlet-class>com.tradeit.actions.bussiness.DisplayHome</servlet-class>
+	<servlet-name>CreatePost</servlet-name>
+	<servlet-class>com.tradeit.actions.bussiness.CreatePost</servlet-class>
 </servlet>
 
 <servlet-mapping>
-	<servlet-name>DisplayHome</servlet-name>
-	<url-pattern>/home.do</url-pattern>
+	<servlet-name>CreatePost</servlet-name>
+	<url-pattern>/createpost.do</url-pattern>
 </servlet-mapping>
 
 </web-app>

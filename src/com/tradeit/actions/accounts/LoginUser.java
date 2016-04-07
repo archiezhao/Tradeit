@@ -18,7 +18,9 @@ public class LoginUser extends HttpServlet {
 			if(isCorrect) {
 				message = "Correct! You have logged in";
 				HttpSession session = request.getSession();
-				response.sendRedirect("home.do");
+				session.setAttribute("username", request.getParameter("username"));
+				response.sendRedirect("home.html");
+				//message = "Hi " + session.getAttribute("username");
 			}
 			else
 				message = "Username or password incorrect";
