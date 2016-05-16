@@ -21,7 +21,6 @@ public class ImageUpload {
 			}
 			log.debug("came here");
 		} catch(FileNotFoundException fne) {
-			//log.log(Level.SEVERE, "Problems during file upload", fne);
 			log.debug(fne.getMessage());
 		} finally {
 			if(out != null) {out.close();}

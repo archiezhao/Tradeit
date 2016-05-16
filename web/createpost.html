@@ -1,9 +1,9 @@
 <html>
-<form action="createpost.do" method="POST" enctype="multipart/form-data">
+<form action="createpost.do" method="POST" enctype="multipart/form-data" autocomplete="off" id="postform">
 	Title:<br>
 	<input type="text" name="posttitle"><br>
 	Price:<br>$
-	<input type="text" name="postprice"><br>
+	<input type="number" name="postprice"><br>
 	Condition:<br>
 	<input type="radio" name="condition" value=5 checked>New<br>
 	<input type="radio" name="condition" value=4>Like New<br>
@@ -12,10 +12,9 @@
 	<input type="radio" name="condition" value=1>Acceptable<br>
 	<input type="radio" name="condition" value=0>Other(Please describe)<br>
 	Description:<br>
-	<input type="text" name="description"><br>
+	<textarea rows="4" cols="50" name="description" form="postform" placeholder="Describe item here..."></textarea><br>
 	Image:
-	<input type="file" name="itemimage" id="postimage" /><br/>
-	
+	<input type="file" name="itemimage" id="postimage" multiple/><br/>
 	<input type="submit" value="Submit">
 </form>
 </html>

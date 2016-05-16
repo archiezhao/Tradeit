@@ -5,8 +5,11 @@ import javax.servlet.http.*;
 import java.io.*;
 import com.tradeit.utility.database.*;
 import com.tradeit.utility.image.*;
+import org.apache.log4j.*;
 
 public class CreatePost extends HttpServlet {
+	static Logger log = Logger.getLogger(ImageUpload.class.getName());
+
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//RequestDispatcher view = request.getRequestDispatcher("/hello.html");
 		//view.forward(request, response);
@@ -16,16 +19,30 @@ public class CreatePost extends HttpServlet {
 		try {		
 			if(request.isRequestedSessionIdValid()) {
 				HttpSession session = request.getSession();
-				/* Insert post information into database */
-				PostOperate.insertPostInfo(Integer.parseInt(request.getParameter("condition")), request.getParameter("description"), session.getAttribute("username").toString());
+				/* get current time in millisecond, will be used as image name */
+				final String curTimeMillis = String.valueOf(System.currentTimeMillis());
+				/* Insert post information into database, insertPostInfo(int condition, String title, int price, String description, String userid) */
+				PostOperate.insertPostInfo(
+					Integer.parseInt(request.getParameter("condition")), 
+					request.getParameter("posttitle"),
+					Integer.parseInt(request.getParameter("postprice")), 
+					request.getParameter("description"), 
+					session.getAttribute("username").toString(),
+					curTimeMillis);
 				
 				/* upload post image */
 				InputStream filecontent = null;
 				final Part filePart = request.getPart("itemimage");
-				filecontent = filePart.getInputStream();
-				ImageUpload.processRequest(filecontent, "/tmp/file.upload1");
+				final String fileName = filePart.getName();
+				if(filePart.getSize() != 0) {
+					filecontent = filePart.getInputStream();
+					ImageUpload.processRequest(filecontent, "/tmp/" + curTimeMillis);
+				}
+				else {
+					log.debug("There's no image in the form");
+				}
+				
 			
-
 				String message = "You have created a post";
 			
 				PrintWriter out = response.getWriter();
