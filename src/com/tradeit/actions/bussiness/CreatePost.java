@@ -1,11 +1,13 @@
 package com.tradeit.actions.bussiness;
 
 import javax.servlet.*;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 import java.io.*;
 import com.tradeit.utility.database.*;
 import com.tradeit.utility.image.*;
 
+@MultipartConfig
 public class CreatePost extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -15,18 +17,24 @@ public class CreatePost extends HttpServlet {
 		ServletContext context = getServletContext();
 	
 		try {		
-			
 			HttpSession session = request.getSession();
 			/* get current time in millisecond, will be used as image name */
 			final String curTimeMillis = String.valueOf(System.currentTimeMillis());
+			/* get the condition code for item */
+			int condition = Integer.parseInt(request.getParameter("condition"));
+			int price = Integer.parseInt(request.getParameter("postprice"));
+			String title = request.getParameter("posttitle");
+			System.out.println("title: " + title);
+			System.out.println("condition: " + condition);
+			System.out.println("price: " + price);
 			/* Insert post information into database, insertPostInfo(int condition, String title, int price, String description, String userid) */
 			PostOperate.insertPostInfo(
-				Integer.parseInt(request.getParameter("condition")), 
-				request.getParameter("posttitle"),
-				Integer.parseInt(request.getParameter("postprice")), 
-				request.getParameter("description"), 
-				session.getAttribute("username").toString(),
-				curTimeMillis);
+				condition, 
+				title,	//VACHAR(100)
+				price, 
+				request.getParameter("description"), //VACHAR(5000)
+				session.getAttribute("username").toString(), //VACHAR(20)
+				curTimeMillis); //VACHAR(20)
 			
 			/* upload post image */
 			InputStream filecontent = null;

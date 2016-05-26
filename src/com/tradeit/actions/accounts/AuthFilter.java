@@ -32,6 +32,10 @@ public class AuthFilter implements Filter {
 		((HttpServletResponse)response).setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
 		if(((HttpServletRequest)request).isRequestedSessionIdValid()) {
 			System.out.println("session is valid");
+			if(((HttpServletRequest)request).getRequestURI().equals("/Tradeit/")) {
+				((HttpServletResponse)response).sendRedirect("/Tradeit/home.html");
+				return;
+			}
 			chain.doFilter(request, response);
 		}
 		else if(((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/login") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/register")) {
