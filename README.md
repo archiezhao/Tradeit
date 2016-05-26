@@ -17,8 +17,8 @@ BACK-END:
     (2) Add multiple image support
     (3) ensure image file secure
 4. Post View                                                                                                    -added
-    (1) add "view post" function
-    (2) get post information from server via json
+    (1) add "view post" function                                                                                -added
+    (2) get post information from server via json                                                               -added
 5. Security (if not mentioned above)
     (1) page cache control                                                                                      -added
     (3) page x-frame-options
