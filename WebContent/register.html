@@ -1,13 +1,109 @@
-<html>
-	<h1 align="center">Registration Page</h1>
-	<form method = "POST" action="register.do" autocomplete="off">
-		Username:<br>
-		<input type="text" name="username"><br>
-		Password:<br>
-		<input type="password" name="password"><br>
-		Retype Password:<br>
-		<input type="password" name="password2">
-		<input type="submit" value="submit">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <style media="screen" type="text/css">
+	body {
+  		padding-bottom: 40px;
+  		background-color: #eee;
+	}
+	.form-signin {
+		padding-top: 240px;
+   	 	padding-right: 15px;
+    	padding-bottom: 15px;
+    	padding-left: 15px;
+  		max-width: 330px;
+  		margin: 0 auto;
+	}
+	.form-signin .form-control {
+  		position: relative;
+  		height: auto;
+  		-webkit-box-sizing: border-box;
+     	-moz-box-sizing: border-box;
+        box-sizing: border-box;
+  		padding: 10px;
+  		font-size: 16px;
+	}
+	.form-signin .form-control:focus {
+  		z-index: 2;
+	}
+	.form-signin #username {
+  		margin-bottom: -1px;
+  		border-bottom-right-radius: 0;
+  		border-bottom-left-radius: 0;
+	}
+	.form-signin #password1 {
+  		margin-bottom: -1px;
+  		border-top-left-radius: 0;
+  		border-top-right-radius: 0;
+	}
+	.form-signin #password2 {
+  		margin-bottom: 10px;
+  		border-top-left-radius: 0;
+  		border-top-right-radius: 0;
+	}
+	.register-ref {
+		vertical-align: middle;
+		text-align: center;
+	}
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Tradeit</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Page 1-1</a></li>
+            <li><a href="#">Page 1-2</a></li>
+            <li><a href="#">Page 1-3</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Page 2</a></li>
+        <li><a href="#">Page 3</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="/Tradeit/register.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="/Tradeit/login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">	
+	<form class="form-signin" method = "POST" action="register.do" autocomplete="off">
+	
+		<label for="username" class="sr-only">Username:</label>
+		<input type="text" class="form-control" id="username" name="username" placeholder="Username" required autofocus>
+		
+    	<label for="password1" class="sr-only">Password:</label>
+    	<input type="password" class="form-control" id="password1" name="password1" placeholder="Password" required>
+ 
+ 		<label for="password2" class="sr-only">Retype Password:</label>
+    	<input type="password" class="form-control" id="password2" name="password2" placeholder="Retype Password" required>
+ 
+		<button type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
+		<div class="register-ref">
+			<a href = "/Tradeit/login.html" >Already have an account? Login here</a>
+		</div>
 	</form>
-	<a href = "/Tradeit/login.html">Go to login page</a>
+</div>
+</body>
 </html>
