@@ -28,6 +28,10 @@ FRONT-END:
 1. Login Page                                                                                                   -added
     (1) autocomplete set to off for user/pass                                                                   -added
 2. Registration Page                                                                                            -added
-3. Home Page                                                                                                    -added
-    (1) add "view post" tab, display json data from server via ajax
-4. Post Create Page                                                                                             -added
+3. Home Page
+    (1) Include user statics, navigation panel
+3. Buy Page                                                                                                     -added
+    (1) add "buy" tab, display json data from server via ajax
+    (2) add search box, search posts
+4. Add Post Page                                                                                                -added
+5. Add "my posts" page
