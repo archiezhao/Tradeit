@@ -40,6 +40,7 @@ public class GetPostList extends HttpServlet{
 			item.put("imageid", infoList.get(i).imageid);
 			list.add(item);
 		}
-		System.out.println(list.toString());
+		PrintWriter out = response.getWriter();
+		out.println(list.toJSONString());
 	}
 }
