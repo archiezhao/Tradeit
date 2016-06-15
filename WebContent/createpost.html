@@ -1,21 +1,163 @@
-<html>
-<form action="createpost.do" method="POST" enctype="multipart/form-data" autocomplete="off" id="postform">
-	Title:<br>
-	<input type="text" name="posttitle"><br>
-	Price:<br>$
-	<input type="number" name="postprice"><br>
-	Condition:<br>
-	<input type="radio" name="condition" value="5" checked>New<br>
-	<input type="radio" name="condition" value="4">Like New<br>
-	<input type="radio" name="condition" value="3">Very Good<br>
-	<input type="radio" name="condition" value="2">Good<br>
-	<input type="radio" name="condition" value="1">Acceptable<br>
-	<input type="radio" name="condition" value="0">Other(Please describe)<br>
-	Description:<br>
-	<textarea rows="4" cols="50" name="description" form="postform" placeholder="Describe item here..."></textarea><br>
-	Image:
-	<input type="file" name="itemimage" id="postimage" multiple/><br/>
-	<input type="submit" value="Submit">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login Page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<style media="screen" type="text/css">
+		html {
+			position: relative;
+		 	min-height: 100%;
+		}
+		
+		body {
+			padding-bottom: 50px;
+		 	background-color: #eee;
+		}
+		#custom-search-input {
+		   	margin:0;
+		    margin-top: 10px;
+		    padding: 0;
+		}
+		.itemlist-group {
+		   	margin:0;
+		    margin-top: 10px;
+		    padding-top: 10px;
+		    padding-bottom: 0;
+		    padding-left: 0;
+		    padding-right: 22px;
+		}	
+		#custom-search-input .search-query {
+		    padding-right: 4px;
+		    padding-left: 4px;
+		    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+		
+		    margin-bottom: 0;
+		   	-webkit-border-radius: 3px;
+		    -moz-border-radius: 3px;
+		    border-radius: 3px;
+		}
+		
+		#custom-search-input button {
+		   	border: 0;
+		    background: none;
+		    /** belows styles are working good */
+		    padding: 2px 5px;
+	       	margin-top: 2px;
+	       	position: relative;
+	       	left: -28px;
+	       	/* IE7-8 doesn't have border-radius, so don't indent the padding */
+	       	margin-bottom: 0;
+	       	-webkit-border-radius: 3px;
+	       	-moz-border-radius: 3px;
+	       	border-radius: 3px;
+	       	color:#D9230F;
+	   	}
+	
+	   	.search-query:focus + button {
+	       	z-index: 3;   
+	   	}
+	   
+	   	.show-more-button {
+	     	text-align: center;
+	     	padding-bottom: 60px;
+		}
+		   
+		.footer {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+		}
+		#author-info {
+			padding-top: 20px;
+		}
+	  
+	</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+		<div class="container-fluid">
+		  <div class="navbar-header">
+		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>                        
+		    </button>
+		    <a class="navbar-brand" href="#">Tradeit</a>
+		  </div>
+		  <div class="collapse navbar-collapse" id="myNavbar">
+		    <ul class="nav navbar-nav">
+		      <li><a href="./home.html">Home</a></li>
+		      <li><a href="./viewpost.html">Buy</a></li>
+		      <li class="dropdown">
+		     		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Sell<span class="caret"></span></a>
+		      	<ul class="dropdown-menu">
+		          	<li><a href="./createpost.html">Create a Post</a></li>
+		          	<li><a href="#">My Posts</a></li>
+		        	</ul>
+		      </li>
+		      <li><a href="#">About</a></li>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+		      <li><a href="./logout.do"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+		    </ul>
+		  </div>
+		</div>
+		</nav>
+		<div>
+			<div class="container">	
+					<form action="createpost.do" method="POST" class="form-horizontal" enctype="multipart/form-data" autocomplete="off" id="postform" role="form">
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="posttitle">Title:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="posttitle" id="posttitle">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="postprice">Price:</label>
+							<div class="col-sm-2">
+								<input type="number" class="form-control" name="postprice" id="postprice">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="conditon">Condition:</label>
+							<div class="col-sm-10">
+								<label class="radio-inline"><input type="radio" name="condition" value="5" checked>New</label>
+								<label class="radio-inline"><input type="radio" name="condition" value="4">Like New</label>
+								<label class="radio-inline"><input type="radio" name="condition" value="3">Very Good</label>
+								<label class="radio-inline"><input type="radio" name="condition" value="2">Good</label>
+								<label class="radio-inline"><input type="radio" name="condition" value="1">Acceptable</label>
+								<label class="radio-inline"><input type="radio" name="condition" value="0">Other(Please describe)</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="description">Description:</label>
+							<div class="col-sm-10">
+								<textarea class="form-control" rows="5" name="description" form="postform" placeholder="Describe the item here..."></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="btn btn-default btn-file">
+								Upload Image<input type="file" name="itemimage" id="postimage" style="display:none;" multiple/>
+							</label>
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</form>
+			
+			</div>		
+		</div>
+		<div class="footer">
+			<div class="navbar">
+			  <p id="author-info" align="center">
+			  	Created by: Jianqi Zhao &nbsp; Contact: <a href="mailto:zhao61@indiana.edu">Email</a> | <a href="https://www.linkedin.com/in/jianqizhao">Linkedin</a>
+			  </p>
+			</div>
+		</div>	
+	
+	</body>
+	
 </html>
 
