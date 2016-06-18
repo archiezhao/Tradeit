@@ -19,7 +19,7 @@ public class GetPostList extends HttpServlet{
 	}
 	@SuppressWarnings("unchecked")
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-		int pageSize = 10;
+		int pageSize = 15;
 		int pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
 		ArrayList<PostInfo> infoList = null;
 		try {

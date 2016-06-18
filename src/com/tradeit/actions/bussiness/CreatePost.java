@@ -39,19 +39,14 @@ public class CreatePost extends HttpServlet {
 			/* upload post image */
 			InputStream filecontent = null;
 			final Part filePart = request.getPart("itemimage");
-			if(filePart.getSize() != 0) {
+			if(filePart != null && filePart.getSize() != 0) {	
 				filecontent = filePart.getInputStream();
 				ImageUpload.processRequest(filecontent, "/tmp/" + curTimeMillis);
 			}
 			else {
 			}
-			String message = "You have created a post";
-		
-			PrintWriter out = response.getWriter();
-  				out.println(
-    			"<html>\n" +
-    			"<body bgcolor=\"#f0f0f0\">\n" +
-    			"<p>Current Message is: " + message + "</p>\n");
+			RequestDispatcher postCreateSuccess = request.getRequestDispatcher("/createsuccess.html");
+			postCreateSuccess.forward(request, response);
 		
 		} catch (Exception e) {
 			context.log(e.toString());
