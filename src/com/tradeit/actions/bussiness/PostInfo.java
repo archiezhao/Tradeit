@@ -7,5 +7,7 @@ public class PostInfo {
 	public int price;
 	public String description;
 	public String userid;
-	public String imageid;
+	public String imageid1;
+	public String imageid2;
+	public String imageid3;
 };

@@ -109,7 +109,7 @@
    	      if(curPage == 1)
    	      	$("#itemlist ul").empty();
    	      for(var i = 0; i < obj.length; i++) {
-   	    	$("#itemlist ul").append('<li href="#my_modal" data-toggle="modal" data-post-title="' + obj[i].title + '" data-price="' + obj[i].price + '" data-condition="' + obj[i].condition + '" data-descrip="' + obj[i].descrip + '" class="list-group-item hoverLi"><span>' + obj[i].title + '</span><span class="pull-right">$123</span></li>')
+   	    	$("#itemlist ul").append('<li href="#my_modal" data-toggle="modal" data-post-title="' + obj[i].title + '" data-price="' + obj[i].price + '" data-condition="' + obj[i].condition + '" data-descrip="' + obj[i].descrip + '" data-imageid1="' + obj[i].imageid1 + '" data-imageid2="' + obj[i].imageid2 + '" data-imageid3="' + obj[i].imageid3 + '" class="list-group-item hoverLi"><span>' + obj[i].title + '</span><span class="pull-right">$123</span></li>')
    	      }   	      
    	    }
    	  }
@@ -201,6 +201,9 @@
         <p id="condition"></p>
         <p>Description</p>
         <textarea id="descrip">123</textarea>
+        <div id="image1"></div><br/>
+        <div id="image2"></div><br/>
+        <div id="image3"></div>
       </div>
     </div>
   </div>
@@ -216,6 +219,12 @@
       $(e.currentTarget).find('textarea[id="descrip"]').val(descrip);
       var condition = $(e.relatedTarget).data('condition');
       $(e.currentTarget).find('p[id="condition"]').text(condition);
+      var imageid1 = $(e.relatedTarget).data('imageid1');
+      $(e.currentTarget).find('div[id="image1"]').html("<image src='/Tradeit/displaypostimage.do?id=" + imageid1 + "' style='width:565px;height:auto;' />");
+      var imageid2 = $(e.relatedTarget).data('imageid2');
+      $(e.currentTarget).find('div[id="image2"]').html("<image src='/Tradeit/displaypostimage.do?id=" + imageid2 + "' style='width:565px;height:auto;' />");
+      var imageid3 = $(e.relatedTarget).data('imageid3');
+      $(e.currentTarget).find('div[id="image3"]').html("<image src='/Tradeit/displaypostimage.do?id=" + imageid3 + "' style='width:565px;height:auto;' />");
   });
 </script>
 

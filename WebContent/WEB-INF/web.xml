@@ -31,6 +31,22 @@
     <servlet-name>CreatePost</servlet-name>
     <url-pattern>/createpost.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>UploadImage</servlet-name>
+  	<servlet-class>com.tradeit.actions.bussiness.UploadImage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadImage</servlet-name>
+    <url-pattern>/uploadimage.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>DisplayPostImage</servlet-name>
+  	<servlet-class>com.tradeit.actions.bussiness.DisplayPostImage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayPostImage</servlet-name>
+    <url-pattern>/displaypostimage.do</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>AuthFilter</filter-name>
     <filter-class>com.tradeit.actions.accounts.AuthFilter</filter-class>

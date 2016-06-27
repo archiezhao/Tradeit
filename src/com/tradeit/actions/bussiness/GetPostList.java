@@ -37,7 +37,9 @@ public class GetPostList extends HttpServlet{
 			item.put("price", new Integer(infoList.get(i).price));
 			item.put("descrip", infoList.get(i).description);
 			item.put("userid", infoList.get(i).userid);
-			item.put("imageid", infoList.get(i).imageid);
+			item.put("imageid1", infoList.get(i).imageid1);
+			item.put("imageid2", infoList.get(i).imageid2);
+			item.put("imageid3", infoList.get(i).imageid3);
 			list.add(item);
 		}
 		PrintWriter out = response.getWriter();

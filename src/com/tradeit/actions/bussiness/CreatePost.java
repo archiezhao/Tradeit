@@ -16,10 +16,12 @@ public class CreatePost extends HttpServlet {
 		
 		ServletContext context = getServletContext();
 	
-		try {		
+		try {
+			/* get current session */
 			HttpSession session = request.getSession();
-			/* get current time in millisecond, will be used as image name */
-			final String curTimeMillis = String.valueOf(System.currentTimeMillis());
+			/* reset the current session's imagecount to zero, and clear 'imageref#', prepare for the next image upload */
+			session.setAttribute("imagecount", new Integer(0));
+			
 			/* get the condition code for item */
 			int condition = Integer.parseInt(request.getParameter("condition"));
 			int price = Integer.parseInt(request.getParameter("postprice"));
@@ -27,6 +29,11 @@ public class CreatePost extends HttpServlet {
 			System.out.println("title: " + title);
 			System.out.println("condition: " + condition);
 			System.out.println("price: " + price);
+			
+			String imageref1 = (null == session.getAttribute("imageref1")) ? "0" : session.getAttribute("imageref1").toString();
+			String imageref2 = (null == session.getAttribute("imageref2")) ? "0" : session.getAttribute("imageref2").toString();
+			String imageref3 = (null == session.getAttribute("imageref3")) ? "0" : session.getAttribute("imageref3").toString();
+			
 			/* Insert post information into database, insertPostInfo(int condition, String title, int price, String description, String userid) */
 			PostOperate.insertPostInfo(
 				condition, 
@@ -34,20 +41,18 @@ public class CreatePost extends HttpServlet {
 				price, 
 				request.getParameter("description"), //VACHAR(5000)
 				session.getAttribute("username").toString(), //VACHAR(20)
-				curTimeMillis); //VACHAR(20)
+				imageref1, //VACHAR(15)
+				imageref2, //VACHAR(15)
+				imageref3); //VACHAR(15)
 			
-			/* upload post image */
-			InputStream filecontent = null;
-			final Part filePart = request.getPart("itemimage");
-			if(filePart != null && filePart.getSize() != 0) {	
-				filecontent = filePart.getInputStream();
-				ImageUpload.processRequest(filecontent, "/tmp/" + curTimeMillis);
-			}
-			else {
-			}
+			session.removeAttribute("imageref1");
+			session.removeAttribute("imageref2");
+			session.removeAttribute("imageref3");	
+			
 			RequestDispatcher postCreateSuccess = request.getRequestDispatcher("/createsuccess.html");
 			postCreateSuccess.forward(request, response);
 		
+			
 		} catch (Exception e) {
 			context.log(e.toString());
 		}

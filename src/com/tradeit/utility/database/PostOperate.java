@@ -8,10 +8,10 @@ import com.tradeit.actions.bussiness.PostInfo;
 public class PostOperate {
 
 	/* Database query strings: Insert a post into database */
-	private static String SQLInsertPostInfo = "INSERT INTO post_info (title, price, cond, descrip, userid, imageid) VALUES (?, ?, ?, ?, ?, ?)";
+	private static String SQLInsertPostInfo = "INSERT INTO post_info (title, price, cond, descrip, userid, imageref1, imageref2, imageref3) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	private static String SQLGetPostList = "SELECT * FROM post_info ORDER BY postid LIMIT ? offset ?";
 	
-	public static void insertPostInfo(int condition, String title, int price, String description, String userid, String curTimeMillis) throws Exception{
+	public static void insertPostInfo(int condition, String title, int price, String description, String userid, String imageref1, String imageref2, String imageref3) throws Exception{
 		Connection conn = DatabaseConnector.getConn();
 		try {
 			PreparedStatement StmtInsertPostInfo = conn.prepareStatement(SQLInsertPostInfo);
@@ -21,7 +21,9 @@ public class PostOperate {
 			StmtInsertPostInfo.setInt(3, condition);
 			StmtInsertPostInfo.setString(4, description); 
 			StmtInsertPostInfo.setString(5, userid);
-			StmtInsertPostInfo.setString(6, curTimeMillis);
+			StmtInsertPostInfo.setString(6, imageref1);
+			StmtInsertPostInfo.setString(7, imageref2);
+			StmtInsertPostInfo.setString(8, imageref3);
 
 			DatabaseConnector.executeQuery(conn, StmtInsertPostInfo);
 		} finally {
@@ -51,7 +53,9 @@ public class PostOperate {
 				item.description = rs.getString("descrip");
 				item.title = rs.getString("title");
 				item.price = rs.getInt("price");
-				item.imageid = rs.getString("imageid");
+				item.imageid1 = rs.getString("imageref1");
+				item.imageid2 = rs.getString("imageref2");
+				item.imageid3 = rs.getString("imageref3");
 				result.add(item);
 			}
 			StmtGetPostList.close();
