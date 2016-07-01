@@ -41,16 +41,11 @@
    	      }   	      
    	    }
    	  }
-	  if (str.length==0) {
-		xmlhttp.open("GET","getpostlist.do?pageIndex=" + curPage,true);
-		curPage++;
-		xmlhttp.send();
-	    
-	  }
-	  else {
-		xmlhttp.open("GET","searchpost.do?keyword="+str,true);
-		xmlhttp.send();
-	  }
+	
+	  xmlhttp.open("GET","getmypostlist.do?pageIndex=" + curPage,true);
+	  curPage++;
+	  xmlhttp.send();
+
     }
  
   </script>     
@@ -87,19 +82,8 @@
   </div>
 </nav>
 
-<div class="container">  
-  <div class="row">
-    <div id="custom-search-input">
-      <div class="input-group col-md-12">
-        <input type="text" class="search-query form-control" placeholder="Search Post" onkeyup="callShowResult(this.value)"/>
-          <span class="input-group-btn">
-            <button class="btn btn-danger" type="button">
-              <span class=" glyphicon glyphicon-search"></span>
-            </button>
-          </span>
-      </div>
-    </div>
-  </div>
+<div class="container"> 
+  <h3>My Posts</h3> 
   <div class="itemlist-group">
     <div id="itemlist">
       <ul class="list-group">

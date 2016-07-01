@@ -38,7 +38,7 @@ public class AuthFilter implements Filter {
 			}
 			chain.doFilter(request, response);
 		}
-		else if(((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/login") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/register")) {
+		else if(((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/login") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/register") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/css") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/js")) {
 			System.out.println("login/register request");
 			chain.doFilter(request, response);
 		}
