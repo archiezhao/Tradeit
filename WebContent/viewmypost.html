@@ -37,7 +37,7 @@
    	      if(obj.length >= 15)
    	    	$("#showmorebutton").show();  
    	      for(var i = 0; i < obj.length; i++) {
-   	    	$("#itemlist ul").append('<li href="#my_modal" data-toggle="modal" data-post-title="' + obj[i].title + '" data-price="' + obj[i].price + '" data-condition="' + obj[i].condition + '" data-descrip="' + obj[i].descrip + '" data-imageid1="' + obj[i].imageid1 + '" data-imageid2="' + obj[i].imageid2 + '" data-imageid3="' + obj[i].imageid3 + '" class="list-group-item hoverLi"><span>' + obj[i].title + '</span><span class="pull-right">$' + obj[i].price + '</span></li>')
+   	    	$("#itemlist ul").append('<li href="#my_modal" data-toggle="modal" data-post-title="' + obj[i].title + '" data-postid="' + obj[i].postid + '" data-price="' + obj[i].price + '" data-condition="' + obj[i].condition + '" data-descrip="' + obj[i].descrip + '" data-imageid1="' + obj[i].imageid1 + '" data-imageid2="' + obj[i].imageid2 + '" data-imageid3="' + obj[i].imageid3 + '" class="list-group-item hoverLi"><span>' + obj[i].title + '</span><span class="pull-right">$' + obj[i].price + '</span></li>')
    	      }   	      
    	    }
    	  }
@@ -64,13 +64,12 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="./home.html">Home</a></li>
         <li><a href="./viewpost.html">Buy</a></li>
-        <li class="dropdown">
+        <li class="dropdown active">
        		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Sell<span class="caret"></span></a>
         	<ul class="dropdown-menu">
             	<li><a href="./createpost.html">Create a Post</a></li>
-            	<li><a href="./viewmypost.html">My Posts</a></li>
+            	<li class="active"><a href="./viewmypost.html">My Posts</a></li>
           	</ul>
         </li>
         <li><a href="./about.html">About</a></li>
@@ -129,6 +128,14 @@
         <div id="image1"></div><br/>
         <div id="image2"></div><br/>
         <div id="image3"></div>
+        <div>
+        	<form action="deletepost.do" method="POST" autocomplete="off" id="deletepostform" role="form">
+        		<input type="hidden" name="postid" id="deletepostid" value='1234'>
+        	</form>
+        </div>
+        <div class="form-group">
+        	<button form="deletepostform" class="btn btn-danger btn-block" style="width:100%">Delete</button>
+        </div>
       </div>
     </div>
   </div>
@@ -144,12 +151,17 @@
 	    $(e.currentTarget).find('p[id="description"]').text(descrip);
 	    var condition = $(e.relatedTarget).data('condition');
 	    $(e.currentTarget).find('div[id="condition"]').empty();
+	    var postId = $(e.relatedTarget).data('postid');
+	    $(e.currentTarget).find('input[id="deletepostid"]').val(postId);
 	    var i = 0;
 	    for(i = 0; i < condition; i++)
 	    	$(e.currentTarget).find('div[id="condition"]').append('<span class="glyphicon glyphicon-star"></span>');
 	    for(i = 0; i < (5-condition); i++)
 	      $(e.currentTarget).find('div[id="condition"]').append('<span class="glyphicon glyphicon-star-empty"></span>');
 	    var imageid1 = $(e.relatedTarget).data('imageid1');
+	    $(e.currentTarget).find('div[id="image1"]').show();
+	    $(e.currentTarget).find('div[id="image2"]').show();
+	    $(e.currentTarget).find('div[id="image3"]').show();
 	    if(imageid1 == 0)
 	    	  $(e.currentTarget).find('div[id="image1"]').hide();
 	    else

@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.*;
 
 import com.tradeit.actions.bussiness.PostInfo;
+import com.tradeit.utility.image.ImageDelete;
 
 public class PostOperate {
 
@@ -12,6 +13,8 @@ public class PostOperate {
 	private static String SQLGetPostList = "SELECT * FROM post_info ORDER BY postid DESC LIMIT ? offset ? ";
 	private static String SQLGetMyPostList = "SELECT * FROM post_info WHERE userid = ? ORDER BY postid DESC LIMIT ? offset ?";
 	private static String SQLSearchPost = "SELECT * FROM post_info WHERE title LIKE ?";
+	private static String SQLDeletePost = "DELETE FROM post_info WHERE postid = ? AND userid = ?";
+	private static String SQLGetPostInfo = "SELECT * FROM post_info WHERE postid = ?";
 	
 	public static void insertPostInfo(int condition, String title, int price, String description, String userid, String imageref1, String imageref2, String imageref3) throws Exception{
 		Connection conn = DatabaseConnector.getConn();
@@ -33,6 +36,39 @@ public class PostOperate {
 				try {conn.close();
 				} catch(SQLException sqlex) {}
 				conn = null;
+			}
+		}
+	}
+	
+	public static PostInfo getPostInfo(int postid) throws Exception {
+		Connection conn = DatabaseConnector.getConn();
+		PreparedStatement StmtGetPostInfo = null;
+		PostInfo result = new PostInfo();
+		try {
+			StmtGetPostInfo = conn.prepareStatement(SQLGetPostInfo);
+			
+			StmtGetPostInfo.setInt(1, postid);
+			
+			ResultSet rs = StmtGetPostInfo.executeQuery();
+			while(rs.next()) {
+				result.postid = rs.getInt("postid");
+				result.condition = rs.getInt("cond");
+				result.description = rs.getString("descrip");
+				result.title = rs.getString("title");
+				result.price = rs.getInt("price");
+				result.imageid1 = rs.getString("imageref1");
+				result.imageid2 = rs.getString("imageref2");
+				result.imageid3 = rs.getString("imageref3");
+			}
+			StmtGetPostInfo.close();
+			conn.close();
+			return result;
+		} finally {
+			if(StmtGetPostInfo != null) {
+				StmtGetPostInfo.close();	
+			}
+			if(conn != null) {
+				conn.close();
 			}
 		}
 	}
@@ -141,6 +177,27 @@ public class PostOperate {
 			}
 			if(conn != null) {
 				conn.close();
+			}
+		}
+	}
+	
+	public static int deletePost(int postid, String userid) throws Exception{
+		PostInfo targetPost = PostOperate.getPostInfo(postid);
+		Connection conn = DatabaseConnector.getConn();
+		try {	
+			PreparedStatement StmtDeletePost = conn.prepareStatement(SQLDeletePost);
+			StmtDeletePost.setInt(1, postid);
+			StmtDeletePost.setString(2, userid);
+			
+			int result = StmtDeletePost.executeUpdate();
+			if(result > 0)
+				ImageDelete.processRequest(targetPost);
+			return result;
+		} finally {
+			if(conn != null) {
+				try {conn.close();
+				} catch(SQLException sqlex) {}
+				conn = null;
 			}
 		}
 	}

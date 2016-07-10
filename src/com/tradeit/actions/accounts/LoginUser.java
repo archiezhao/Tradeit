@@ -9,7 +9,6 @@ public class LoginUser extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//RequestDispatcher view = request.getRequestDispatcher("/hello.html");
 		//view.forward(request, response);
-		response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
 		ServletContext context = getServletContext();
 	
 		try {		
@@ -20,7 +19,7 @@ public class LoginUser extends HttpServlet {
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("username", request.getParameter("username"));
-				response.sendRedirect("home.html");
+				response.sendRedirect("about.html");
 				//message = "Hi " + session.getAttribute("username");
 			}
 			else
