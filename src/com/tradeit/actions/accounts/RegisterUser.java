@@ -15,6 +15,7 @@ public class RegisterUser extends HttpServlet {
 		String pass1 = request.getParameter("password1");
 		String pass2 = request.getParameter("password2");
 		if(!(pass1.equals(pass2))) {
+			System.out.println("password not equal");
 			PrintWriter out = response.getWriter();
       			out.println(
         		"<html>\n" +
@@ -26,15 +27,13 @@ public class RegisterUser extends HttpServlet {
 		try {
 			boolean isExist = UserAuth.checkUserExist(request.getParameter("username"));
 			if(!isExist) {
-				UserAuth.insertUserPass(request.getParameter("username"), request.getParameter("password"));
-				PrintWriter out = response.getWriter();
-      				out.println(
-        			"<html>\n" +
-        			"<body bgcolor=\"#f0f0f0\">\n" +
-        			"<p>Current Message is: " + "User created" + "</p>\n");
+				System.out.println("Username not existing");
+				UserAuth.insertUserPass(request.getParameter("username"), request.getParameter("password1"));
+				RequestDispatcher postCreateSuccess = request.getRequestDispatcher("/usercreated.html");
+				postCreateSuccess.forward(request, response);
 			}	
 			else {
-
+				System.out.println("username existing");
 				PrintWriter out = response.getWriter();
       				out.println(
         			"<html>\n" +
@@ -43,7 +42,7 @@ public class RegisterUser extends HttpServlet {
 
 			}
 		} catch (Exception e) {
-			context.log(e.toString());
+			System.out.println(e.getStackTrace());
 		}
 	}
 }

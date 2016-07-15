@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+
+<script type="text/javascript">
+window.onload=function() {
+function countdown() {
+if ( typeof countdown.counter == 'undefined' ) {
+    countdown.counter = 3; // initial count
+    }
+if(countdown.counter > 0) {
+	document.getElementById('count').innerHTML = countdown.counter--;
+    setTimeout(countdown, 1000);
+    }
+else {
+    location.href = '/Tradeit/login.html';
+    }
+}
+countdown();
+};
+</script>
+
+</head>
+<body>
+<h2>User created successfully, you will be redirected in <span id="count"></span> seconds</h2>
+</body>
+</html>

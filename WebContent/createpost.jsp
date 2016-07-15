@@ -51,7 +51,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-sm-2" for="postprice">Price:</label>
+							<label class="control-label col-sm-2" for="postprice">Price($):</label>
 							<div class="col-sm-2">
 								<input type="number" class="form-control" name="postprice" id="postprice">
 							</div>
