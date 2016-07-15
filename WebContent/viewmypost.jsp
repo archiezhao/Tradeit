@@ -125,8 +125,8 @@
 				<p id="description"></p>
 			</div>
 		</div>
-        <div id="image1"></div><br/>
-        <div id="image2"></div><br/>
+        <div id="image1"></div>
+        <div id="image2"></div>
         <div id="image3"></div>
         <div>
         	<form action="deletepost.do" method="POST" autocomplete="off" id="deletepostform" role="form">
@@ -166,17 +166,17 @@
 	    if(imageid1 == 0)
 	    	  $(e.currentTarget).find('div[id="image1"]').hide();
 	    else
-	    	  $(e.currentTarget).find('div[id="image1"]').html("<image src='/Tradeit/displaypostimage.do?id=" + imageid1 + "' style='width:565px;height:auto;' />");
+	    	  $(e.currentTarget).find('div[id="image1"]').html("<image src='/Tradeit/displaypostimage.do?id=" + imageid1 + "' style='width:565px;height:auto;' /><br/><br/>");
 	    var imageid2 = $(e.relatedTarget).data('imageid2');
 	    if(imageid2 == 0)
 	  	  $(e.currentTarget).find('div[id="image2"]').hide();
 	    else
-	    	  $(e.currentTarget).find('div[id="image2"]').html("<image src='/Tradeit/displaypostimage.do?id=" + imageid2 + "' style='width:565px;height:auto;' />");
+	    	  $(e.currentTarget).find('div[id="image2"]').html("<image src='/Tradeit/displaypostimage.do?id=" + imageid2 + "' style='width:565px;height:auto;' /><br/><br/>");
 	    var imageid3 = $(e.relatedTarget).data('imageid3');
 	    if(imageid3 == 0)
 	  	  $(e.currentTarget).find('div[id="image3"]').hide();
 	    else
-	    	  $(e.currentTarget).find('div[id="image3"]').html("<image src='/Tradeit/displaypostimage.do?id=" + imageid3 + "' style='width:565px;height:auto;' />");
+	    	  $(e.currentTarget).find('div[id="image3"]').html("<image src='/Tradeit/displaypostimage.do?id=" + imageid3 + "' style='width:565px;height:auto;' /><br/><br/>");
 	});
 </script>
 

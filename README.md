@@ -19,9 +19,6 @@ BACK-END:
 4. Post View                                                                                                    -added
     (1) add "view post" function                                                                                -added
     (2) get post information from server via json                                                               -added
-5. Security (if not mentioned above)
-    (1) page cache control                                                                                      -added
-    (3) page x-frame-options
 
 
 FRONT-END:
@@ -35,3 +32,15 @@ FRONT-END:
     (2) add search box, search posts
 4. Add Post Page                                                                                                -added
 5. Add "my posts" page
+
+
+SECURITY FEATURES (protected against):
+1. SQL Injection
+2. Broken Authentication and Session Management
+3. Cross-Site Scripting
+4. Cross-Site Request Forgery
+5. Clickjacking
+6. Insecure connection (HTTP)
+7. Password stored in clear text
+8. Cacheable SSL Page 
+9. Weak SSL Ciphers

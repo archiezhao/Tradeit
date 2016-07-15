@@ -30,6 +30,7 @@ public class AuthFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		((HttpServletResponse)response).setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+		((HttpServletResponse)response).setHeader("X-Frame-Options", "SAMEORIGIN");
 		if(((HttpServletRequest)request).isRequestedSessionIdValid()) {
 			System.out.println("session is valid");
 			if(((HttpServletRequest)request).getRequestURI().equals("/Tradeit/")) {
