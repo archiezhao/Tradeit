@@ -68,8 +68,8 @@
         <li class="dropdown active">
        		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Sell<span class="caret"></span></a>
         	<ul class="dropdown-menu">
-            	<li><a href="./createpost.html">Create a Post</a></li>
-            	<li class="active"><a href="./viewmypost.html">My Posts</a></li>
+            	<li><a href="./createpost.jsp">Create a Post</a></li>
+            	<li class="active"><a href="./viewmypost.jsp">My Posts</a></li>
           	</ul>
         </li>
         <li><a href="./about.html">About</a></li>
@@ -131,6 +131,7 @@
         <div>
         	<form action="deletepost.do" method="POST" autocomplete="off" id="deletepostform" role="form">
         		<input type="hidden" name="postid" id="deletepostid" value='1234'>
+        		<input type="hidden" name="csrf_token" value="<%= session.getAttribute("csrf_token") %>"/>
         	</form>
         </div>
         <div class="form-group">

@@ -2,6 +2,7 @@ package com.tradeit.actions.bussiness;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -27,6 +28,13 @@ public class UploadImage extends HttpServlet {
 			HttpSession session = request.getSession();
 			/* get current time in millisecond, will be used as image name */
 			final String curTimeMillis = String.valueOf(System.currentTimeMillis());
+			
+			/* responds with CSRF error if csrf_token doesn't match */
+			if(!session.getAttribute("csrf_token").equals(request.getParameter("csrf_token"))) {
+				session.invalidate();
+				//response.sendRedirect("/Tradeit/csrfthreat.html");
+      			return;
+			}
 			
 			/* upload post image */
 			InputStream filecontent = null;

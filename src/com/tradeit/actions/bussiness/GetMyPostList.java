@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import com.tradeit.utility.database.PostOperate;
 
@@ -45,10 +46,10 @@ public class GetMyPostList extends HttpServlet{
 			JSONObject item = new JSONObject();
 			item.put("postid", new Integer(infoList.get(i).postid));
 			item.put("condition", new Integer(infoList.get(i).condition));
-			item.put("title", infoList.get(i).title);
+			item.put("title", StringEscapeUtils.escapeHtml4(infoList.get(i).title));
 			item.put("price", new Integer(infoList.get(i).price));
-			item.put("descrip", infoList.get(i).description);
-			item.put("userid", infoList.get(i).userid);
+			item.put("descrip", StringEscapeUtils.escapeHtml4(infoList.get(i).description));
+			item.put("userid", StringEscapeUtils.escapeHtml4(infoList.get(i).userid));
 			item.put("imageid1", infoList.get(i).imageid1);
 			item.put("imageid2", infoList.get(i).imageid2);
 			item.put("imageid3", infoList.get(i).imageid3);

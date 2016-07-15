@@ -15,7 +15,7 @@ if(countdown.counter > 0) {
     setTimeout(countdown, 1000);
     }
 else {
-    location.href = '/Tradeit/viewpost.html';
+    location.href = '/Tradeit/login.html';
     }
 }
 countdown();
@@ -24,6 +24,6 @@ countdown();
 
 </head>
 <body>
-<h2>Post created successfully, you will be redirected in <span id="count"></span> seconds</h2>
+<h2>The session has been invalidated due to potential CSRF activity, you will be redirected in <span id="count"></span> seconds</h2>
 </body>
 </html>

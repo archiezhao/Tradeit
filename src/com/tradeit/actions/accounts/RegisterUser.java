@@ -12,9 +12,9 @@ public class RegisterUser extends HttpServlet {
 		response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
 		ServletContext context = getServletContext();
 		/* Validate password strength, and password retyped identically */
-		String pass1 = request.getParameter("password");
+		String pass1 = request.getParameter("password1");
 		String pass2 = request.getParameter("password2");
-		if(!pass1.equals(pass2)) {
+		if(!(pass1.equals(pass2))) {
 			PrintWriter out = response.getWriter();
       			out.println(
         		"<html>\n" +

@@ -30,7 +30,7 @@
 		     		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Sell<span class="caret"></span></a>
 		      	<ul class="dropdown-menu">
 		          	<li class="active"><a href="./createpost.html">Create a Post</a></li>
-		          	<li><a href="./viewmypost.html">My Posts</a></li>
+		          	<li><a href="./viewmypost.jsp">My Posts</a></li>
 		        	</ul>
 		      </li>
 		      <li><a href="./about.html">About</a></li>
@@ -71,6 +71,7 @@
 							<label class="control-label col-sm-2" for="description">Description:</label>
 							<div class="col-sm-10">
 								<textarea class="form-control" rows="5" name="description" form="postform" placeholder="Describe the item here..."></textarea>
+								<input type="hidden" name="csrf_token" value="<%= session.getAttribute("csrf_token") %>"/>
 							</div>
 						</div>
 					</form>
@@ -78,7 +79,9 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2" style="text-align: right;">Image:</label>
 							<div class="col-sm-10">
-								<form action="/Tradeit/uploadimage.do" class="dropzone" id="dropzone-file-uploader" name="itemimage"></form>
+								<form action="/Tradeit/uploadimage.do" class="dropzone" id="dropzone-file-uploader" name="itemimage">
+									<input type="hidden" name="csrf_token" value="<%= session.getAttribute("csrf_token") %>"/>
+								</form>
 							</div>
 						</div>
 						<div class="form-group">

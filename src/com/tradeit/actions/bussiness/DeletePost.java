@@ -17,6 +17,13 @@ public class DeletePost extends HttpServlet {
 			/* get current session */
 			HttpSession session = request.getSession();
 			
+			/* responds with CSRF error if csrf_token doesn't match */
+			if(!session.getAttribute("csrf_token").equals(request.getParameter("csrf_token"))) {
+				session.invalidate();
+				response.sendRedirect("/Tradeit/csrfthreat.html");
+      			return;
+			}
+			
 			/* get user id */
 			String username = (String)session.getAttribute("username");
 			
@@ -26,7 +33,7 @@ public class DeletePost extends HttpServlet {
 			
 			PostOperate.deletePost(postid, username);
 			
-			RequestDispatcher postCreateSuccess = request.getRequestDispatcher("/viewmypost.html");
+			RequestDispatcher postCreateSuccess = request.getRequestDispatcher("/viewmypost.jsp");
 			postCreateSuccess.forward(request, response);
 		
 			

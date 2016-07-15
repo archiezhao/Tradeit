@@ -19,6 +19,17 @@ public class CreatePost extends HttpServlet {
 		try {
 			/* get current session */
 			HttpSession session = request.getSession();
+			
+			/* responds with CSRF error if csrf_token doesn't match */
+			System.out.println("session csrf is: " + session.getAttribute("csrf_token"));
+			System.out.println("request csrf is: " + request.getAttribute("csrf_token"));
+			if(!session.getAttribute("csrf_token").equals(request.getParameter("csrf_token"))) {
+				session.invalidate();
+				RequestDispatcher csrfError = request.getRequestDispatcher("/csrfthreat.html");
+				csrfError.forward(request, response);
+      			return;
+			}
+			
 			/* reset the current session's imagecount to zero, and clear 'imageref#', prepare for the next image upload */
 			session.setAttribute("imagecount", new Integer(0));
 			

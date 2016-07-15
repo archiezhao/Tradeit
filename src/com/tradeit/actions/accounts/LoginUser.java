@@ -4,6 +4,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
 import com.tradeit.utility.database.*;
+import java.util.UUID;
+
 
 public class LoginUser extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -19,6 +21,11 @@ public class LoginUser extends HttpServlet {
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("username", request.getParameter("username"));
+				
+				/* generate CSRF token and store in session */
+				String csrf_token = UUID.randomUUID().toString();
+				session.setAttribute("csrf_token", csrf_token);
+				
 				response.sendRedirect("about.html");
 				//message = "Hi " + session.getAttribute("username");
 			}

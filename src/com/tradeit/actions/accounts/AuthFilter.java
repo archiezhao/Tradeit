@@ -33,12 +33,12 @@ public class AuthFilter implements Filter {
 		if(((HttpServletRequest)request).isRequestedSessionIdValid()) {
 			System.out.println("session is valid");
 			if(((HttpServletRequest)request).getRequestURI().equals("/Tradeit/")) {
-				((HttpServletResponse)response).sendRedirect("/Tradeit/home.html");
+				((HttpServletResponse)response).sendRedirect("/Tradeit/about.html");
 				return;
 			}
 			chain.doFilter(request, response);
 		}
-		else if(((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/login") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/register") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/css") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/js") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/fonts")) {
+		else if(((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/login") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/register") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/css") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/js") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/fonts") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/csrfthreat")) {
 			System.out.println("login/register request");
 			chain.doFilter(request, response);
 		}
