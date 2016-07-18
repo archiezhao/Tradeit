@@ -29,7 +29,7 @@
 		      <li class="dropdown active">
 		     		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Sell<span class="caret"></span></a>
 		      	<ul class="dropdown-menu">
-		          	<li class="active"><a href="./createpost.html">Create a Post</a></li>
+		          	<li class="active"><a href="./createpost.jsp">Create a Post</a></li>
 		          	<li><a href="./viewmypost.jsp">My Posts</a></li>
 		        	</ul>
 		      </li>
