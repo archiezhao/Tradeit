@@ -2,7 +2,7 @@
 
 This is an under-construction Java web application. The goal is to build a cragslist-like website.
 Deployed on AWS with HTTPS enforced:
-https://jianqizhao.com/Tradeit/
+https://jianqizhao.cloud/Tradeit/
 Function Milestones:
 
 BACK-END:
