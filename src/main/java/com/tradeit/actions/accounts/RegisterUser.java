@@ -33,7 +33,6 @@ public class RegisterUser extends HttpServlet {
 				postCreateSuccess.forward(request, response);
 			}	
 			else {
-				System.out.println("username existing");
 				PrintWriter out = response.getWriter();
       				out.println(
         			"<html>\n" +
@@ -42,7 +41,7 @@ public class RegisterUser extends HttpServlet {
 
 			}
 		} catch (Exception e) {
-			System.out.println(e.getStackTrace());
+			System.out.println(e.toString());
 		}
 	}
 }

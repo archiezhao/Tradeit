@@ -32,7 +32,6 @@ public class AuthFilter implements Filter {
 		((HttpServletResponse)response).setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
 		((HttpServletResponse)response).setHeader("X-Frame-Options", "SAMEORIGIN");
 		if(((HttpServletRequest)request).isRequestedSessionIdValid()) {
-			System.out.println("session is valid");
 			if(((HttpServletRequest)request).getRequestURI().equals("/Tradeit/")) {
 				((HttpServletResponse)response).sendRedirect("/Tradeit/about.html");
 				return;
@@ -40,7 +39,6 @@ public class AuthFilter implements Filter {
 			chain.doFilter(request, response);
 		}
 		else if(((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/login") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/register") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/css") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/js") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/fonts") || ((HttpServletRequest)request).getRequestURI().startsWith("/Tradeit/csrfthreat")) {
-			System.out.println("login/register request");
 			chain.doFilter(request, response);
 		}
 		else {

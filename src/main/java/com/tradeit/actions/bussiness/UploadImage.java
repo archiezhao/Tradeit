@@ -46,7 +46,7 @@ public class UploadImage extends HttpServlet {
 			
 				filecontent = filePart.getInputStream();
 				/* Upload the image to a temporary directory */
-				ImageUpload.processRequest(filecontent, "/tmp/" + curTimeMillis);
+				ImageUpload.processRequest(filecontent, "/tmp/tradeit/" + curTimeMillis);
 				
 				/* Update 'imagecount' parameter to the number of images, initialize it to one if null */
 				Integer imagecount = (Integer)session.getAttribute("imagecount");

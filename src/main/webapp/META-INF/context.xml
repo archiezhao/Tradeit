@@ -23,7 +23,7 @@
 
 	<Resource name="jdbc/tradeit" auth="Container"
           type="javax.sql.DataSource" driverClassName="com.mysql.jdbc.Driver"
-          url="jdbc:mysql://localhost:3306/tradeit"
+          url="jdbc:mysql://192.168.1.16:3306/tradeit"
           username="jzhao" password="19910423" maxActive="20" maxIdle="10"
           maxWait="-1"/> 
 

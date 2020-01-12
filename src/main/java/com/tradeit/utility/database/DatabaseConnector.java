@@ -27,7 +27,12 @@ public class DatabaseConnector {
 
 	public static Connection getConn() throws Exception {
 		Connection conn = null;
-		conn = ds.getConnection();
+		try {
+			conn = ds.getConnection();
+		}
+		catch (Exception e) {
+			System.out.println(e.toString());
+		}
 		return conn;
 	}
 	

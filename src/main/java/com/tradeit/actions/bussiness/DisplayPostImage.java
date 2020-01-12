@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class DisplayPostImage extends HttpServlet {
-	static String TmpPathAWS = "/webapps/tmp/";
+	static String TmpPathAWS = "/webapps/tmp/tradeit/";
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		/* get servlet context */
 		ServletContext cntx= getServletContext();

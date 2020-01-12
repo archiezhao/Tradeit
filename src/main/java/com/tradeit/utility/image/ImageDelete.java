@@ -15,15 +15,15 @@ public class ImageDelete {
 		File file2 = null;
 		File file3 = null;
 		if(!targetPost.imageid1.equals("0")) {
-			file1 = new File(basePathAWS + "/tmp/" + targetPost.imageid1);
+			file1 = new File(basePathAWS + "/tmp/tradeit/" + targetPost.imageid1);
 			file1.delete();
 		}
 		if(!targetPost.imageid2.equals("0")) {
-			file2 = new File(basePathAWS + "/tmp/" + targetPost.imageid2);
+			file2 = new File(basePathAWS + "/tmp/tradeit/" + targetPost.imageid2);
 			file2.delete();
 		}
 		if(!targetPost.imageid3.equals("0")) {
-			file3 = new File(basePathAWS + "/tmp/" + targetPost.imageid3);
+			file3 = new File(basePathAWS + "/tmp/tradeit/" + targetPost.imageid3);
 			file3.delete();
 		}
 	}
